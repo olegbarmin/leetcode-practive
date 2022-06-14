@@ -9,7 +9,6 @@ public class SearchInRotatedSortedArray {
             int m = (l + r) / 2;
             int v = nums[m];
             if (v == target) return m;
-
             if (target < v) {
                 r = m - 1;
             } else {

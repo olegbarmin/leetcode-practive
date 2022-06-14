@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -26,7 +27,7 @@ class FileSinkTest {
 
     @BeforeEach
     void createLogFile() throws IOException {
-        logFile = Paths.get(directory.toString(), "/mylog.log");
+        logFile = Paths.get(directory.toString(), "/log-%s.log".formatted(UUID.randomUUID().toString()));
         Files.createFile(logFile);
         fileSink = new FileSink(logFile);
     }

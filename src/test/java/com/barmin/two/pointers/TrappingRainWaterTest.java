@@ -1,8 +1,10 @@
 package com.barmin.two.pointers;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Disabled("Not finished")
 class TrappingRainWaterTest {
 
     @Test
