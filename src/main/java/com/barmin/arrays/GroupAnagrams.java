@@ -11,6 +11,8 @@ import java.util.List;
  * typically using all the original letters exactly once.
  *
  * @leetcode 49
+ * @complexity O(n)
+ * @memory O(n)
  */
 public class GroupAnagrams {
 

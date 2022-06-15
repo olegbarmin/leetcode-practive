@@ -5,6 +5,8 @@ package com.barmin.two.pointers;
  * compute how much water it can trap after raining.
  *
  * @leetcode 42
+ * @complexity O(n)
+ * @memory O(1)
  */
 public class TrappingRainWater {
 
