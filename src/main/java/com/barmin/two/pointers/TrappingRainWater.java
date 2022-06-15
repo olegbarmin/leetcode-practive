@@ -13,25 +13,22 @@ public class TrappingRainWater {
             return 0;
         }
 
-        final int[] maxLeft = new int[heights.length];
-        final int[] maxRight = new int[heights.length];
-
-        int max = heights[0];
-        for (int i = 1; i < heights.length; i++) {
-            max = Math.max(max, heights[i]);
-            maxLeft[i] = max;
-        }
-
-        max = heights[heights.length - 1];
-        for (int i = heights.length - 2; i >= 0; i--) {
-            max = Math.max(max, heights[i]);
-            maxRight[i] = max;
-        }
-
+        int l = 0;
+        int r = heights.length - 1;
+        var maxLeft = heights[l];
+        var maxRight = heights[r];
         var result = 0;
-        for (int i = 0; i < heights.length; i++) {
-            final var min = Math.min(maxLeft[i], maxRight[i]);
-            result += Math.max(0, min - heights[i]);
+
+        while (l < r) {
+            if (maxLeft < maxRight) {
+                l += 1;
+                maxLeft = Math.max(maxLeft, heights[l]);
+                result += maxLeft - heights[l];
+            } else {
+                r -= 1;
+                maxRight = Math.max(maxRight, heights[r]);
+                result += maxRight - heights[r];
+            }
         }
 
         return result;
