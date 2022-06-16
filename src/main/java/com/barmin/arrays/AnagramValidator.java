@@ -2,6 +2,13 @@ package com.barmin.arrays;
 
 import java.util.HashMap;
 
+/**
+ * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+ *
+ * @leetcode 242
+ * @complexity O(n)
+ * @memory O(n)
+ */
 public class AnagramValidator {
 
     public static boolean isAnagram(String l, String r) {
