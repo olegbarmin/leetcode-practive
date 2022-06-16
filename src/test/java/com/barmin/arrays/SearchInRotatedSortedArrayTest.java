@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled("Not finished")
 class SearchInRotatedSortedArrayTest {
 
     @Test
@@ -27,6 +26,14 @@ class SearchInRotatedSortedArrayTest {
     void test3() {
         final int[] input = {4, 5, 6, 7, 0, 1, 2};
         final var target = 5;
+
+        Assertions.assertEquals(1, SearchInRotatedSortedArray.search(input, target));
+    }
+
+    @Test
+    void test4() {
+        final int[] input = {1, 3};
+        final var target = 3;
 
         Assertions.assertEquals(1, SearchInRotatedSortedArray.search(input, target));
     }
