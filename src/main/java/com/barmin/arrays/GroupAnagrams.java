@@ -1,8 +1,6 @@
 package com.barmin.arrays;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Given an array of strings strs, group the anagrams together. You can return the answer in any order.
@@ -17,16 +15,16 @@ import java.util.List;
 public class GroupAnagrams {
 
     public static List<List<String>> groupAnagrams(String[] strs) {
-        var map = new HashMap<String, List<String>>();
-        for (var s : strs) {
-            char[] hash = new char[26];
-            for (var c : s.toCharArray()) {
-                hash[c - 'a']++;
+        final var map = new HashMap<String, List<String>>();
+        for (String word : strs) {
+            final char[] hash = new char[26];
+            for (char letter : word.toCharArray()) {
+                hash[letter - 'a']++;
             }
-            var key = new String(hash);
-            List<String> words = map.getOrDefault(key, new ArrayList<>());
-            words.add(s);
-            map.put(key, words);
+            final var key = new String(hash);
+            final var anagrams = map.getOrDefault(key, new ArrayList<>());
+            anagrams.add(word);
+            map.put(key, anagrams);
         }
         return map.values().stream().toList();
     }
