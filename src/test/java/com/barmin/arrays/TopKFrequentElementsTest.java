@@ -25,7 +25,7 @@ class TopKFrequentElementsTest {
 
     @Test
     void test3() {
-        int[] input = {1,2};
+        int[] input = {1, 2};
         var k = 2;
 
         int[] expected = {1, 2};

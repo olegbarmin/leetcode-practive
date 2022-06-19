@@ -1,32 +1,37 @@
 package com.barmin.arrays;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
+/**
+ * Given an integer array nums and an integer k, return the k most frequent elements.
+ * You may return the answer in any order.
+ *
+ * @leetcode 347
+ * @complexity O(n)
+ * @memory O(n)
+ */
 public class TopKFrequentElements {
+
     public static int[] topKFrequent(int[] nums, int k) {
-        var map = new HashMap<Integer, Integer>();
+        final var frequencies = new HashMap<Integer, Integer>();
         for (int num : nums) {
-            var occurrences = map.getOrDefault(num, 0);
-            occurrences++;
-            map.put(num, occurrences);
+            int frequency = frequencies.getOrDefault(num, 0);
+            frequencies.put(num, ++frequency);
         }
 
-        var top = new List[nums.length + 1];
-        for (var entry : map.entrySet()) {
-            List<Integer> list = top[entry.getValue()];
-            if (list == null) list = new ArrayList<Integer>();
-            list.add(entry.getKey());
-            top[entry.getValue()] = list;
+        final var top = new List[nums.length + 1];
+        for (final var e : frequencies.entrySet()) {
+            final var list = top[e.getValue()] == null ? new ArrayList<>() : top[e.getValue()];
+            list.add(e.getKey());
+            top[e.getValue()] = list;
         }
 
         var result = new ArrayList<Integer>();
-        for (int i = top.length - 1; i > 0 && k > 0; i--) {
-            List<Integer> list = top[i];
-            if (list == null) continue;
-            for (int j = 0; j < list.size() && k > 0; j++, k--) {
-                result.add(list.get(j));
+        for (int i = top.length - 1; i >= 0 && k > 0; i--) {
+            if (top[i] == null) continue;
+            for (var item : top[i]) {
+                result.add((Integer) item);
+                k--;
             }
         }
 
