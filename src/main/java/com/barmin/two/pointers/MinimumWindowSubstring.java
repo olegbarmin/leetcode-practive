@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  *
  * @leetcode 76
  * @complexity O(m + n)
- * @memory O(n)
+ * @memory O(m)
  */
 public class MinimumWindowSubstring {
 
