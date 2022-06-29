@@ -23,4 +23,10 @@ class ValidParenthesesTest {
         final var input = "(]";
         Assertions.assertFalse(ValidParentheses.isValid(input));
     }
+
+    @Test
+    void test4(){
+        final var input = "{[]}";
+        Assertions.assertTrue(ValidParentheses.isValid(input));
+    }
 }
