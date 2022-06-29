@@ -1,7 +1,5 @@
 package com.barmin.two.pointers;
 
-import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -20,45 +18,43 @@ import java.util.stream.Collectors;
 public class MinimumWindowSubstring {
 
     public static String minWindow(String s, String t) {
-        var tLetters = t.chars().mapToObj(i -> (char) i)
+        var map = t.chars().mapToObj(i -> (char) i)
                 .collect(Collectors.toMap(c -> c, c -> 1, Integer::sum));
 
-        String min = "";
-        var window = new HashMap<Character, Integer>();
-        var found = 0;
+        int min = Integer.MAX_VALUE;
+        int found = 0;
+        int strStart = -1;
         for (int l = 0, r = 0; r < s.length(); r++) {
             final char rChar = s.charAt(r);
-            if (!tLetters.containsKey(rChar)) {
+            if (!map.containsKey(rChar)) {
                 continue;
             }
-
-            final var count = window.getOrDefault(rChar, 0) + 1;
-            window.put(rChar, count);
-            if (count == tLetters.get(rChar)) {
+            final var count = map.get(rChar) - 1;
+            map.put(rChar, count);
+            if (count == 0) {
                 found++;
             }
 
             // trimming left
-            for (; found == tLetters.size(); l++) {
+            for (; found == map.size(); l++) {
                 final char lChar = s.charAt(l);
-                if (!tLetters.containsKey(lChar)) {
+                if (!map.containsKey(lChar)) {
                     continue;
                 }
 
-                final String cur = s.substring(l, r + 1);
-                if (min.isEmpty()) {
-                    min = cur;
+                var curLen = r + 1 - l;
+                if (curLen < min) {
+                    min = curLen;
+                    strStart = l;
                 }
-                min = cur.length() < min.length() ? cur : min;
-
-                final int lCount = window.get(lChar) - 1;
-                window.put(lChar, lCount);
-                if (lCount < tLetters.get(lChar)) {
+                final var lCount = map.get(lChar) + 1;
+                map.put(lChar, lCount);
+                if (lCount > 0) {
                     found--;
                 }
             }
         }
 
-        return min;
+        return strStart == -1 ? "" : s.substring(strStart, strStart + min);
     }
 }
