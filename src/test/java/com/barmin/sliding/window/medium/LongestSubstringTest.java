@@ -28,4 +28,10 @@ class LongestSubstringTest {
         final var input = "dabcdbcbb";
         Assertions.assertEquals(4, LongestSubstring.lengthOfLongestSubstring(input));
     }
+
+    @Test
+    void test5() {
+        final var input = " ";
+        Assertions.assertEquals(1, LongestSubstring.lengthOfLongestSubstring(input));
+    }
 }
